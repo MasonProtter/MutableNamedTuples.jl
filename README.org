@@ -1,0 +1,39 @@
+* MutableNamedTuples.jl
+
+Sometimes you want a named tuple, but [[https://discourse.julialang.org/t/alternative-to-mutable-named-tuple/38375][mutable]]. This works by wrapping
+a named tuple where all the elements are mutable `Ref`s and then
+pretending that it's elements are that contents of the `Ref`s instead.
+
+#+BEGIN_SRC julia
+julia> using MutableNamedTuples
+
+julia> mnt = MutableNamedTuple(a=1, b= 2)
+MutableNamedTuple(a = 1, b = 2)
+
+julia> mnt.a = 2
+2
+
+julia> mnt
+MutableNamedTuple(a = 2, b = 2)
+#+END_SRC
+
+#+BEGIN_SRC julia
+julia> const MNT = MutableNamedTuple
+MutableNamedTuple
+
+julia> A = [MNT(a = 1, b=2) MNT(a=3, b=6)
+            MNT(a =-1, b=4) MNT(a=1, b=1)]
+2×2 Array{MutableNamedTuple{(:a, :b),Tuple{Base.RefValue{Int64},Base.RefValue{Int64}}},2}:
+ MutableNamedTuple(a = 1, b = 2)   MutableNamedTuple(a = 3, b = 6)
+ MutableNamedTuple(a = -1, b = 4)  MutableNamedTuple(a = 1, b = 1)
+
+julia> A[1, 1].a = 100
+100
+
+julia> A
+2×2 Array{MutableNamedTuple{(:a, :b),Tuple{Base.RefValue{Int64},Base.RefValue{Int64}}},2}:
+ MutableNamedTuple(a = 100, b = 2)  MutableNamedTuple(a = 3, b = 6)
+ MutableNamedTuple(a = -1, b = 4)   MutableNamedTuple(a = 1, b = 1)   
+#+END_SRC
+
+You should probably use [[https://github.com/JuliaArrays/StructArrays.jl][StructArrays.jl]] though.
