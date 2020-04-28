@@ -1,8 +1,8 @@
 * MutableNamedTuples.jl
 
 Sometimes you want a named tuple, but [[https://discourse.julialang.org/t/alternative-to-mutable-named-tuple/38375][mutable]]. This works by wrapping
-a named tuple where all the elements are mutable `Ref`s and then
-pretending that it's elements are that contents of the `Ref`s instead.
+a named tuple where all the elements are mutable ~Ref~ s  and then
+pretending that it's elements are that contents of the ~Ref~ s  instead.
 
 #+BEGIN_SRC julia
 julia> using MutableNamedTuples
