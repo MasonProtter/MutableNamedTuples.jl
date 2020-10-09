@@ -1,6 +1,6 @@
 * MutableNamedTuples.jl
 
-[![Build Status](https://travis-ci.com/MasonProtter/MutableNamedTuples.jl.svg?branch=master)](https://travis-ci.com/MasonProtter/MutableNamedTuples.jl)
+![](https://travis-ci.com/MasonProtter/MutableNamedTuples.jl.svg?branch=master)
 
 Sometimes you want a named tuple, but [[https://discourse.julialang.org/t/alternative-to-mutable-named-tuple/38375][mutable]]. This works by wrapping
 a named tuple where all the elements are mutable ~Ref~ s  and then
