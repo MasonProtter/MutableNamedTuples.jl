@@ -1,5 +1,3 @@
-![](https://travis-ci.com/MasonProtter/MutableNamedTuples.jl.svg?branch=master)
-
 * MutableNamedTuples.jl
 
 Sometimes you want a named tuple, but [[https://discourse.julialang.org/t/alternative-to-mutable-named-tuple/38375][mutable]]. This works by wrapping
