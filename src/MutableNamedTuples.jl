@@ -13,7 +13,7 @@ function MutableNamedTuple{names}(tuple::Tuple) where names
 end
 
 Base.keys(::MutableNamedTuple{names}) where {names} = names 
-Base.values(mnt::MutableNamedTuple) = (x -> x[]).(values(getfield(mnt, :nt)))
+Base.values(mnt::MutableNamedTuple) = getindex.(values(getfield(mnt, :nt)))
 refvalues(mnt::MutableNamedTuple) = values(getfield(mnt, :nt))
 
 Base.NamedTuple(mnt::MutableNamedTuple) = NamedTuple{keys(mnt)}(values(mnt))
