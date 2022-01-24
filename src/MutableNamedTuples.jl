@@ -6,7 +6,7 @@ struct MutableNamedTuple{N,T <: Tuple{Vararg{<:Ref}}}
     nt::NamedTuple{N, T}
 end
 
-MutableNamedTuple(;kwargs...) = MutableNamedTuple(NamedTuple{keys(kwargs.data)}(Ref.(values(kwargs.data))))
+MutableNamedTuple(; kwargs...) = MutableNamedTuple(NamedTuple{keys(kwargs)}(Ref.(values(values(kwargs)))))
 
 function MutableNamedTuple{names}(tuple::Tuple) where names
     MutableNamedTuple(NamedTuple{names}(Ref.(tuple)))
