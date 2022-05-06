@@ -27,9 +27,10 @@ end
 Base.getproperty(mnt::MutableNamedTuple, s::Symbol) = getproperty(NamedTuple(mnt), s)
 
 function Base.setproperty!(mnt::MutableNamedTuple, s::Symbol, x)
-    i = findfirst(x -> x === s, keys(mnt))
-    refvalues(mnt)[i][] = x
+    nt = getfield(mnt,:nt)
+    getfield(nt,s)[] = x
 end
+Base.propertynames(::MutableNamedTuple{T,R}) where {T,R} = T
 
 Base.length(mnt::MutableNamedTuple) = length(getfield(mnt, :nt))
 Base.iterate(mnt::MutableNamedTuple, iter=1) = iterate(NamedTuple(mnt), iter)
