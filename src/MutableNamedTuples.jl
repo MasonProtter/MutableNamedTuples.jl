@@ -24,7 +24,7 @@ function Base.show(io::IO, mnt::MutableNamedTuple{names}) where {names}
     print(io, "MutableNamedTuple", NamedTuple(mnt))
 end
 
-Base.getproperty(mnt::MutableNamedTuple, s::Symbol) = getproperty(NamedTuple(mnt), s)
+Base.getproperty(mnt::MutableNamedTuple, s::Symbol) = getfield(getfield(mnt, :nt), s)[]
 
 function Base.setproperty!(mnt::MutableNamedTuple, s::Symbol, x)
     nt = getfield(mnt,:nt)
