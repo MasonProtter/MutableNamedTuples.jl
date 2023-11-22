@@ -17,10 +17,9 @@ julia> mnt
 MutableNamedTuple(a = 2, b = 2)
 #+END_SRC
 
-#+BEGIN_SRC julia
-julia> const MNT = MutableNamedTuple
-MutableNamedTuple
+A shorthand ~MNT~ can also be used:
 
+#+BEGIN_SRC julia
 julia> A = [MNT(a = 1, b=2) MNT(a=3, b=6)
             MNT(a =-1, b=4) MNT(a=1, b=1)]
 2×2 Array{MutableNamedTuple{(:a, :b),Tuple{Base.RefValue{Int64},Base.RefValue{Int64}}},2}:

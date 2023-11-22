@@ -1,6 +1,6 @@
 module MutableNamedTuples
 
-export MutableNamedTuple
+export MutableNamedTuple, MNT
 
 struct MutableNamedTuple{N,T <: Tuple{Vararg{<:Ref}}}
     nt::NamedTuple{N, T}
@@ -11,6 +11,8 @@ MutableNamedTuple(; kwargs...) = MutableNamedTuple(NamedTuple{keys(kwargs)}(Ref.
 function MutableNamedTuple{names}(tuple::Tuple) where names
     MutableNamedTuple(NamedTuple{names}(Ref.(tuple)))
 end
+
+const MNT = MutableNamedTuple
 
 Base.keys(::MutableNamedTuple{names}) where {names} = names 
 Base.values(mnt::MutableNamedTuple) = getindex.(values(getfield(mnt, :nt)))

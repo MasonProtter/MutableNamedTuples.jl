@@ -16,6 +16,12 @@ using Test, MutableNamedTuples
 
     mnt2 = MutableNamedTuple{(:a,:b)}((2,"hi"))
     @test NamedTuple(mnt2) == NamedTuple(mnt)
+
+    mnt3 = MNT(a=1, b="hi")
+    @test mnt3 isa MutableNamedTuple
+    mnt3.a = 2
+    @test mnt3.a == 2
+    @test mnt3[2] == "hi"
 end
 
 
